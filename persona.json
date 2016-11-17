@@ -6,16 +6,16 @@
     "apellido": { "type": "string" },
     "fecha_nacimiento": { "type": "date" },
     "involucrado": {
-      "type": "object",
-      "properties": {
-        "rol": { "type": "string" },
-        "casos": {
-          "type": "array",
-          "items": { "type": "number" }
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rol": { "type": "string" },
+          "caso": { "type": "number" }
         }
       }
     },
-    "cuplable": {
+    "culpable": {
       "type": "array",
       "items": { "type": "number" }
     },
