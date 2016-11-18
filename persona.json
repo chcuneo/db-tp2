@@ -30,5 +30,6 @@
       }
     },
     "oficial": { "type": "boolean" }
-  }
+  },
+  "required": ["dni", "nombre", "apellido"]
 }

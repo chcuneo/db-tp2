@@ -5,6 +5,7 @@
     "casos": {
       "type": "array",
       "items": { "type": "number" }
-    }
+    },
+    "required": ["localidad", "casos"]
   }
 }
