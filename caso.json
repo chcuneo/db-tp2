@@ -2,8 +2,7 @@
   "type": "object",
   "properties": {
     "id": { "type": "number"},
-    "hora_suceso": { "type": "timestamp" },
-    "fecha_suceso": { "type": "date" },
+    "timestamp_suceso": { "type": "timestamp" },
     "descripcion": { "type": "string" },
     "personas": {
       "type": "array",
@@ -35,14 +34,13 @@
         "type": "object",
         "properties": {
           "descripcion": { "type": "string" },
-          "fecha_ingreso": { "type": "date" },
-          "fecha_hallazgo": { "type": "date" },
-          "fecha_sellado": { "type": "date" },
-          "hora_hallazgo": { "type": "timestamp" },
-          "hora_sellado": { "type": "timestamp" }
-        }
+          "timestamp_ingreso": { "type": "timestamp" },
+          "timestamp_hallazgo": { "type": "timestamp" },
+          "timestamp_sellado": { "type": "timestamp" }
+        },
+        "required": ["descripcion", "timestamp_ingreso", "timestamp_hallazgo"]
       }
     }
   },
-  "required": ["id", "fecha_suceso", "estado", "categoria", "lugar_suceso"]
+  "required": ["id", "timestamp_suceso", "estado", "categoria", "lugar_suceso"]
 }

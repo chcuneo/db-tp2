@@ -24,7 +24,7 @@ db.persona.mapReduce(
   reduce1,
   {
     out: "map_reduce_result1",
-    finalize: finalizeFunction2
+    finalize: finalize1
   }
 );
 
