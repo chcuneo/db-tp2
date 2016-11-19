@@ -1,6 +1,6 @@
 // Numero promedio de crimenes cometidos por personas que ya han sido encontradas culpables de algun crimen.
 var map1 = function() {
-  if (this.culpable.length > 0) {
+  if (this.culpable && this.culpable.length > 0) {
     emit(1, { qty: 1, sum: this.culpable.length })
   }
 }
@@ -19,7 +19,7 @@ var finalize1 = function(key, reduced) {
   return reduced.sum / reduced.qty;
 }
 
-db.persona.mapReduce(
+db.personas.mapReduce(
   map1,
   reduce1,
   {
@@ -44,7 +44,7 @@ var reduce2 = function(key, values) {
   return Math.max(values);
 }
 
-db.persona.mapReduce(map2, reduce2, { out: 'map_reduce_result2' });
+db.personas.mapReduce(map2, reduce2, { out: 'map_reduce_result2' });
 db.map_reduce_result2.find().sort( { value: -1 } );
 
 //Casos en los que se han visto involucradas el mayor numero de personas.
@@ -56,7 +56,7 @@ var reduce3 = function(key, values) {
   return Math.max(values);
 }
 
-db.caso.mapReduce(map3, reduce3, { out: 'map_reduce_result3' });
+db.casos.mapReduce(map3, reduce3, { out: 'map_reduce_result3' });
 db.map_reduce_result3.find().sort( { value: -1 } );
 
 // Cantidad de crimenes por localidad y por ano.
@@ -69,7 +69,7 @@ var reduce4 = function(key, values) {
   return Math.sum(values);
 }
 
-db.caso.mapReduce(map4, reduce4, { out: 'map_reduce_result4' });
+db.casos.mapReduce(map4, reduce4, { out: 'map_reduce_result4' });
 
 // Mayor numero de crimenes cometido por alguna persona.
 var map5 = function() {
@@ -80,7 +80,7 @@ var reduce5 = function(key, values) {
   return Math.max(values);
 }
 
-db.persona.mapReduce(map5, reduce5, { out: 'map_reduce_result5' });
+db.personas.mapReduce(map5, reduce5, { out: 'map_reduce_result5' });
 
 // Cantidad total de evidencias por caso.
 var map6 = function() {
@@ -91,7 +91,7 @@ var reduce6 = function(key, values) {
   return Math.sum(values);
 }
 
-db.caso.mapReduce(map6, reduce6, { out: 'map_reduce_result6' });
+db.casos.mapReduce(map6, reduce6, { out: 'map_reduce_result6' });
 
 // Las 10 ciudades con mayor numero de crimenes.
 var map7 = function() {
@@ -102,5 +102,5 @@ var reduce7 = function(key, values) {
   return Math.sum(values);
 }
 
-db.caso.mapReduce(map7, reduce7, { out: 'map_reduce_result7' })
+db.casos.mapReduce(map7, reduce7, { out: 'map_reduce_result7' })
 db.map_reduce_result7.find().sort( { value: -1 } );

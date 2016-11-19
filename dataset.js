@@ -1,3 +1,14 @@
+// db.casos.drop()
+// db.casosPorFecha.drop()
+// db.casosPorLocalidad.drop()
+// db.personas.drop()
+
+
+db.createCollection('casos')
+db.createCollection('casosPorFecha')
+db.createCollection('casosPorLocalidad')
+db.createCollection('personas')
+
 db.casos.insertMany(
 [
   {
@@ -87,7 +98,7 @@ db.casos.insertMany(
   {
     'id': 3,
     'timestamp_suceso': ISODate("2016-04-10T10:00:00.000Z"),
-    'descripcion': '',
+    'descripcion': 'Se desnudo',
     'personas': [
       900000
     ],
@@ -209,47 +220,114 @@ db.casosPorLocalidad.insertMany(
 ]
 )
 
-db.casosPorLocalidad.insertMany(
+db.personas.insertMany(
 [
   {
     'dni': 300000,
     'nombre': 'ricardo',
-    'apellido': 'fort'
+    'apellido': 'fort',
+    'culpable': [2],
+    'involucrado':[
+      {
+        'rol': 'testigo',
+        'caso': 0
+      },
+      {
+        'rol': 'culpable',
+        'caso': 2
+      }
+    ]
   },
   {
     'dni': 950000,
     'nombre': 'carlos',
-    'apellido': 'police'
+    'apellido': 'police',
+    'oficial': true,
+    'involucrado':[
+      {
+        'rol': 'investigador',
+        'caso': 1
+      },
+      {
+        'rol': 'investigador',
+        'caso': 2
+      }
+    ]
   },
   {
     'dni': 200000,
     'nombre': 'mama',
-    'apellido': 'fort'
+    'apellido': 'fort',
+    'culpable': [0],
+    'involucrado':[
+      {
+        'rol': 'culpable',
+        'caso': 0
+      }
+    ]
   },
   {
     'dni': 250000,
     'nombre': 'carlitos',
-    'apellido': 'police'
+    'apellido': 'police',
+    'oficial': true,
+    'involucrado':[
+      {
+        'rol': 'investigador',
+        'caso': 0
+      },
+      {
+        'rol': 'investigador',
+        'caso': 4
+      }
+    ]
   },
   {
     'dni': 600000,
     'nombre': 'ramon',
-    'apellido': 'terra'
+    'apellido': 'terra',
+    'culpable': [1],
+    'involucrado':[
+      {
+        'rol': 'culpable',
+        'caso': 1
+      }
+    ]
   },
   {
     'dni': 400000,
     'nombre': 'claudio',
-    'apellido': 'odas'
+    'apellido': 'odas',
+    'involucrado':[
+      {
+        'rol': 'victima',
+        'caso': 1
+      }
+    ]
   },
   {
     'dni': 900000,
     'nombre': 'mauro',
-    'apellido': 'yatusabe'
+    'apellido': 'yatusabe',
+    'culpable': [3],
+    'involucrado':[
+      {
+        'rol': 'culpable',
+        'caso': 3
+      }
+    ]
   },
   {
     'dni': 130000,
     'nombre': 'julian',
-    'apellido': 'bay'
+    'apellido': 'bay',
+    'culpable': [4],
+    'involucrado':[
+      {
+        'rol': 'culpable',
+        'caso': 4
+      }
+    ]
   },
 ]
 )
