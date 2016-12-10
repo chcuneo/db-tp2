@@ -39,35 +39,45 @@ var map2 = function() {
     }
 
   }
-  if (ncasos > 0) { emit(this.dni, ncasos); }
+  if (ncasos > 0) { emit(ncasos, { personas : [this.dni] }); }
 }
 
 var reduce2 = function(key, values) {
-  return values.reduce(function(pv, cv) { return pv + cv; }, 0);
+  var res = { personas: [] }
+  values.forEach(function(e){ res.personas.push.apply(res.personas,e.personas) })
+  return res;
 }
 
-db.personas.mapReduce(map2, reduce2, { out: 'personas_involucradas_como_testigos' });
+db.personas.mapReduce(map2, reduce2, { out: 'aux_2' });
+db.createCollection('personas_involucradas_como_testigos');
+db.personas_involucradas_como_testigos.insertMany(
+  // Ordeno los resultados de mayor a menor, me quedo con el primero y me fijo las personas que contiene
+  // Inserto cada persona como un objeto { dni: numero } a la coleccion final
+  db.aux_2.find({}).sort({_id:-1})[0].value.personas.map(function(e){ return {dni: e}})
+)
+db.aux_2.drop() // Elimino coleccion auxiliar
+
 
 //Casos en los que se han visto involucradas el mayor numero de personas.
 var map3 = function() {
-  emit(1, { id: this.id, involucrados: this.personas.length});
+  emit(this.personas.length, { casos: [this.id] });
 }
 
 var reduce3 = function(key, values) {
-    involucrados = values.map(function(obj){
-        return obj.involucrados;
-    })
-    
-    maxPersonas = Math.max.apply(Math, involucrados);
-
-    casos = values.filter(function(obj){
-        return obj.involucrados == maxPersonas;
-    })
-
-  return {casos: casos};
+  var res = { casos: [] }
+  values.forEach(function(e){ res.casos.push.apply(res.casos,e.casos) })
+  return res;
 }
 
-db.casos.mapReduce(map3, reduce3, { out: 'casos_con_mayor_numero_de_personas_involucradas' });
+db.casos.mapReduce(map3, reduce3, { out: 'aux_3' });
+db.createCollection('casos_con_mayor_numero_de_personas_involucradas');
+db.casos_con_mayor_numero_de_personas_involucradas.insertMany(
+  // Ordeno los resultados de mayor a menor, me quedo con el primero y me fijo los casos que contiene
+  // Inserto cada caso como un objeto { caso: numero } a la coleccion final
+  db.aux_3.find({}).sort({_id:-1})[0].value.casos.map(function(e){ return {caso: e}})
+)
+
+db.aux_3.drop() // Elimino coleccion auxiliar
 
 // Cantidad de crimenes por localidad y por ano.
 var map4 = function() {

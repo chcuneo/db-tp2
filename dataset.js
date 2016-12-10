@@ -4,10 +4,10 @@
 // db.personas.drop()
 
 
-db.createCollection('casos')
-db.createCollection('casosPorFecha')
-db.createCollection('casosPorLocalidad')
-db.createCollection('personas')
+db.createCollection('casos');
+db.createCollection('casosPorFecha');
+db.createCollection('casosPorLocalidad');
+db.createCollection('personas');
 
 db.casos.insertMany(
 [
@@ -16,9 +16,10 @@ db.casos.insertMany(
     'timestamp_suceso': ISODate("2016-01-10T10:00:00.000Z"),
     'descripcion': 'Mama corto toda la loz',
     'personas': [
-      300000,
-      200000,
-      250000
+      30000000,
+      20000000,
+      25000000,
+      37840000
     ],
     'estado': 'resuelto',
     'categoria': 'Sabotaje',
@@ -46,9 +47,9 @@ db.casos.insertMany(
     'timestamp_suceso': ISODate("2016-01-10T10:00:00.000Z"),
     'descripcion': 'Un campesino atropello a otro con su carreta',
     'personas': [
-      400000,
-      600000,
-      950000
+      40000000,
+      60000000,
+      95000000
     ],
     'estado': 'pendiente',
     'categoria': 'Homicidio',
@@ -76,8 +77,9 @@ db.casos.insertMany(
     'timestamp_suceso': ISODate("2016-03-10T10:00:00.000Z"),
     'descripcion': 'Pisteaba como un campeon y bueno',
     'personas': [
-      300000,
-      950000
+      30000000,
+      95000000,
+      37840000
     ],
     'estado': 'resuelto',
     'categoria': 'Imprudencia',
@@ -100,7 +102,7 @@ db.casos.insertMany(
     'timestamp_suceso': ISODate("2016-04-10T10:00:00.000Z"),
     'descripcion': 'Se desnudo',
     'personas': [
-      900000
+      90000000
     ],
     'estado': 'descartado',
     'categoria': 'Exhibicionismo',
@@ -116,8 +118,8 @@ db.casos.insertMany(
     'timestamp_suceso': ISODate("2015-03-10T10:00:00.000Z"),
     'descripcion': 'Le dio al paracetamol',
     'personas': [
-      130000,
-      250000
+      13000000,
+      25000000
     ],
     'estado': 'congelado',
     'categoria': 'Drogas',
@@ -151,7 +153,7 @@ db.casos.insertMany(
     ]
   }
 ]
-)
+);
 
 
 db.casosPorFecha.insertMany(
@@ -218,12 +220,12 @@ db.casosPorLocalidad.insertMany(
     'casos': [4]
   }
 ]
-)
+);
 
 db.personas.insertMany(
 [
   {
-    'dni': 300000,
+    'dni': 30000000,
     'nombre': 'ricardo',
     'apellido': 'fort',
     'culpable': [2],
@@ -235,11 +237,30 @@ db.personas.insertMany(
       {
         'rol': 'culpable',
         'caso': 2
+      },
+      {
+        'rol': 'testigo',
+        'caso': 2
       }
     ]
   },
   {
-    'dni': 950000,
+    'dni': 37840000,
+    'nombre': 'richard',
+    'apellido': 'gere',
+    'involucrado':[
+      {
+        'rol': 'testigo',
+        'caso': 0
+      },
+      {
+        'rol': 'testigo',
+        'caso': 2
+      }
+    ]
+  },
+  {
+    'dni': 95000000,
     'nombre': 'carlos',
     'apellido': 'police',
     'oficial': true,
@@ -255,7 +276,7 @@ db.personas.insertMany(
     ]
   },
   {
-    'dni': 200000,
+    'dni': 20000000,
     'nombre': 'mama',
     'apellido': 'fort',
     'culpable': [0],
@@ -263,11 +284,15 @@ db.personas.insertMany(
       {
         'rol': 'culpable',
         'caso': 0
+      },
+      {
+        'rol': 'testigo',
+        'caso': 0
       }
     ]
   },
   {
-    'dni': 250000,
+    'dni': 25000000,
     'nombre': 'carlitos',
     'apellido': 'police',
     'oficial': true,
@@ -283,7 +308,7 @@ db.personas.insertMany(
     ]
   },
   {
-    'dni': 600000,
+    'dni': 60000000,
     'nombre': 'ramon',
     'apellido': 'terra',
     'culpable': [1],
@@ -295,7 +320,7 @@ db.personas.insertMany(
     ]
   },
   {
-    'dni': 400000,
+    'dni': 40000000,
     'nombre': 'claudio',
     'apellido': 'odas',
     'involucrado':[
@@ -306,7 +331,7 @@ db.personas.insertMany(
     ]
   },
   {
-    'dni': 900000,
+    'dni': 90000000,
     'nombre': 'mauro',
     'apellido': 'yatusabe',
     'culpable': [3],
@@ -318,7 +343,7 @@ db.personas.insertMany(
     ]
   },
   {
-    'dni': 130000,
+    'dni': 13000000,
     'nombre': 'julian',
     'apellido': 'bay',
     'culpable': [4],
@@ -330,4 +355,4 @@ db.personas.insertMany(
     ]
   },
 ]
-)
+);
