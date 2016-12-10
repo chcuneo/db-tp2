@@ -130,10 +130,10 @@ var reduce7 = function(key, values) {
 
 db.casos.mapReduce(map7, reduce7, { out: 'ciudades_con_mayor_numero_de_crimenes' })
 
-db.map_reduce_result1.find()
-db.map_reduce_result2.find().sort( { value: -1 } );
-db.map_reduce_result3.find().sort( { value: -1 } );
-db.map_reduce_result4.find()
-db.map_reduce_result5.find()
-db.map_reduce_result6.find()
-db.map_reduce_result7.find().sort( { value: -1 } );
+db.promedio_crimenes_cometidos.find()
+db.personas_involucradas_como_testigos.find().sort( { value: -1 } );
+db.casos_con_mayor_numero_de_personas_involucradas.find().sort( { value: -1 } );
+db.crimenes_por_localidad_y_ano.find()
+db.mayor_numero_de_crimenes_cometidos_por_una_persona.find()
+db.cantidad_total_de_evidencias_por_caso.find()
+db.ciudades_con_mayor_numero_de_crimenes.find().sort( { value: -1 } );
